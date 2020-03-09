@@ -1,19 +1,33 @@
 package br.com.alura.forum.controller;
 
-import br.com.alura.forum.model.Curso;
 import br.com.alura.forum.model.Topico;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import br.com.alura.forum.repository.TopicoRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
-import java.util.Arrays;
 import java.util.List;
 
 @RestController
+@RequestMapping("/topicos")
 public class TopicosController {
 
-    @RequestMapping("/topicos")
-    public List<TopicoDTO> lista() {
-        Topico topico = new Topico("Duvida", "Duvida com Spring", new Curso("Spring", "Programação"));
-        return TopicoDTO.convert(Arrays.asList(topico,topico,topico));
+    @Autowired
+    private TopicoRepository topicoRepository;
+
+    @GetMapping
+    public List<TopicoDTO> lista(String nomeCurso) {
+        if(nomeCurso == null) {
+            List<Topico> topicos = topicoRepository.findAll();
+            return TopicoDTO.convert(topicos);
+        } else {
+            List<Topico> topicos = topicoRepository.findByCursoNome(nomeCurso);
+            return TopicoDTO.convert(topicos);
+        }
+    }
+
+    @PostMapping
+    public void cadastrar(@RequestBody TopicoForm topicoForm) {
+        Topico topico = topicoForm.convert();
+        topicoRepository.save(topico);
     }
 }

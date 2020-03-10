@@ -35,19 +35,19 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
     //Config Autorização
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/topicos").permitAll()
-                .antMatchers(HttpMethod.GET, "/topicos/*").permitAll()
-                .antMatchers(HttpMethod.POST, "/auth").permitAll()
-                .anyRequest().authenticated()
-                .and().formLogin();
 //        http.authorizeRequests()
 //                .antMatchers(HttpMethod.GET, "/topicos").permitAll()
 //                .antMatchers(HttpMethod.GET, "/topicos/*").permitAll()
 //                .antMatchers(HttpMethod.POST, "/auth").permitAll()
 //                .anyRequest().authenticated()
-//                .and().csrf().disable()
-//                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//                .and().formLogin();
+        http.authorizeRequests()
+                .antMatchers(HttpMethod.GET, "/topicos").permitAll()
+                .antMatchers(HttpMethod.GET, "/topicos/*").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth").permitAll()
+                .anyRequest().authenticated()
+                .and().csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
     }
 

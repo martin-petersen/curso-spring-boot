@@ -1,0 +1,5 @@
+DELETE http://localhost:8080/topicos/2
+content-type: application/json
+authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJBUEkgZG8gRsOzcnVtIGRhIEFsdXJhIiwic3ViIjoiMSIsImlhdCI6MTU4Mzk1MjIwOSwiZXhwIjoxNTg0MDM4NjA5fQ.ZqfkElDkTwydb4wRpcBHXmq5K4du-189wghdlAweLBc
+
+###
